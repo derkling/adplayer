@@ -1,0 +1,88 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="../../.docsrc/AVR32_ns.css">
+   </head>
+   <body>
+   <div id="wrapper">
+<p align="left" class="whs2"><a href="../SERVICES_Readme.html"<font color="red"></font>Back to SERVICES page</a></p>
+<h1 align="center" class="whs1">AVR UC3 Series Software Framework: FAT Module<br>
+</h1>
+
+<p align="center" class="whs2">Copyright &copy; 2007 Atmel Corporation</p>
+
+<h2>Introduction</h2>
+    <p>The File Allocation Table or FAT is the structure used by the filesystem to know where the files have been saved on the disk. 
+    The FAT links a file to the sectors of the disk where its content has been stored.</p>
+    The FAT file system module supports FAT12, FAT16, FAT32 file system.</p>
+    <p>Two examples are available:
+    <li><a href="./FAT_EXAMPLE/readme.html">a SHELL example to issue some commands (ls, mount, cat, etc).</a></li>
+    <li><a href="./FSACCESS_EXAMPLE/readme.html">an example to use POSIX interface to FAT accesses (open, read, write, close).</a></li>
+<p>&nbsp;</p>
+
+
+<h2>FAT Module</h2>
+    <p>The module is composed of:
+    <li><a href="fat.c">fat.c</a> and <a href="fat.h">fat.h</a>: FAT functions.</li>
+    <li><a href="fat_unusual.c">fat_unusual.c</a>: set of rarely-used FAT functions.</li>
+    <li><a href="file.c">file.c</a> and <a href="file.h">file.h</a>: file access functions.</li>
+    <li><a href="fs_com.h">fs_com.h</a>: definition for FAT module interface.</li>
+    <li><a href="fsaccess.c">fsaccess.c</a> and <a href="fsaccess.h">fsaccess.h</a>: file access functions  with POSIX interface.</li>    
+    <li><a href="navigation.c">navigation.c</a> and <a href="navigation.h">navigation.h</a>: file navigation functions.</li>
+    </p>
+    <br>
+    <p>
+    The FAT module needs a memory to be used. In the provided examples, the memory used is a AT45DBX Dataflash, using SPI. 
+    The FAT memory interface is using the <a href="../../SERVICES/MEMORY/CTRL_ACCESS/readme.html"> Memory control access </a> module (/SERVICES/MEMORY/CTRL_ACCESS), which is a memory abstraction layer.
+    </p>
+    <br>
+    <p>
+    Here is the drawing for the File System Layers :<br>
+    <p>&nbsp;</p>
+    <H1 ALIGN=center><img src="./FS_Layers.gif"></H1>
+    <p>&nbsp;</p>
+    <br>
+    </p> 
+        
+        
+  
+
+<p>&nbsp;</p>
+
+
+ <h2>Terminology</h2>
+
+The following terminology can be found in the module or in the module interface. An advanced description of the FAT can be found <a href="http://en.wikipedia.org/wiki/File_Allocation_Table">here</a>.
+<p>&nbsp;</p>
+
+  <li><b> Clusters</b>: Single unit of data storage at the FATxx file system logic level. A cluster is a set of 1 or more sectors and it is the smallest storage unit. A cluster is either free or used, it can't be shared by several files. Clustering allows the increase of storage space because the FAT refers to cluster numbers instead of logical sector numbers. For instance, if you put 4 sectors into each cluster, each cluster will hold 2048 bytes, the maximum cluster number is 65535 for FAT16 and this gives a capacity of about 120 Mb. The drawback to this method is waste of storage space. If a cluster is only partially used by a file, the remaining part of the cluster contains no useful data but is unusable for other files. If you use clusters of 1 sector and the sector size is 512 bytes, this leads to a waste of maximum 511 bytes (when the file uses 1 byte of the cluster). But when the cluster size is 4 sectors with the same sector size, this leads to a waste of maximum 2047 bytes. The more sectors you group into one cluster, the more space you waste. This is especially annoying when you have a lot of small files.</p></li>
+  <li><b> FAT</b>: File Allocation Table, a data structure present in all FAT volumes </p></li>
+  <li><b> FAT1</b>: The first copy of the FAT </p></li>
+  <li><b> FAT2</b>: The second copy of the FAT</p></li>
+  <li><b> FAT12</b>: FAT file system using 12-bit cluster addressing</p></li>
+  <li><b> FAT16</b>: FAT file system using 16-bit cluster addressing</p></li>
+  <li><b> FAT32</b>: FAT file system using 32-bit cluster addressing; Win95 SR2 and later</p></li>
+  <li><b> FAT or FATxx</b>: File systems that use File Allocation Tables, etc.</p></li>
+  <li><b> VFAT</b>: The 32-bit code used to operate the file system in Win9x GUI mode</p></li>
+  <li><b> Sector</b>: Single unit of storage at the physical disk level</p></li>
+  <li><b> Physical sector address</b>: Sector address in absolute physical hardware terms</p></li>
+  <li><b> CHS sector address</b>: address expressed in Cylinder, Head, Sector terms</p></li>
+  <li><b> Logical sector address</b>: Sector address relative to the FATxx volume. From a physical viewpoint, the data on floppy disks or hard disks is organized in tracks, heads and sectors. You can find the data on the disk if you know the track, the head and the sector where it is. The number of tracks, heads and sectors is dependent on the type of disk. FAT hides theses differences between disks by using the concept of logical sector. The physical sectors are assigned a serial number. This serial number is the logical sector number corresponding to the physical sector.</p></li>
+  <li><b> Folder</b>: A collection of named items as seen via Windows Explorer</p></li>
+  <li><b> File Folder</b>: Modern Windows-speak for "directory"</p></li>
+  <li><b> Directory</b>: A file system data structure that lists files and/or directories</p></li>
+  <li><b> Directory entry</b>: Points to a file or directory, and contains info about it</p></li>
+  <li><b> Attributes</b>: A collection of bits in a directory entry that describes it</p></li>
+  <li><b> LFN</b>: long file names </p></li>
+
+<p>&nbsp;</p>
+
+
+
+<hr align="center" width="50%" class="whs4">
+
+    <p class=legalfooter>AVR is a registered trademark of
+    Atmel Corporation.</p>
+ </div>
+   </body>
+</html>

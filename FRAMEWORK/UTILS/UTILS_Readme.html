@@ -1,0 +1,335 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="../.docsrc/AVR32_ns.css">
+   </head>
+	 <body>
+	 <div id="wrapper">
+<p align="left" class="whs2"><a href="../Readme.html"<font color="red"></font>Back to main page</a></p>
+<!-- UC3_START -->
+<h1 align="center" class="whs1">AVR UC3 Series Software Framework: the UTILS folder<br>
+<!-- UC3_END -->
+</h1>
+
+<p align="center" class="whs2">Copyright &copy; 2006-2008 Atmel Corporation</p>
+
+<h2>Introduction</h2>
+    <p>This directory contains files that are used by all other directories of
+    the framework: it holds several linker script files, IAR & GCC pre-compiled
+    libraries of some Software Framework modules, and C/C++ files with general
+    usage defines, macros and functions.</p>
+
+<p>&nbsp;</p>
+
+<h2>UTILS folder Description</h2>
+<p>This directory consists of the following contents:</p>
+
+
+<h3><a href="./compiler.h"><B>compiler.h</B></a></h3>
+<p>This file defines commonly used types and macros.</p>
+
+<p>&nbsp;</p>
+
+<h3><a href="./AVR32_HEADER_FILES/"><B>AVR32_HEADER_FILES folder</B></a></h3>
+<p>This module gathers a set of part-specific header files for the avr32-gcc Gnu Compiler Collection
+and for the IAR IDE
+(see the <a href="./AVR32_HEADER_FILES/avr32-headers.zip">avr32-headers.zip</a> file).</p>
+
+<p>For installation of these header files, see the <a href="../.docsrc/Installation.html">installation page</a>.</p>
+
+<p>&nbsp;</p>
+
+<h3><a href="./DEBUG/"><B>DEBUG folder</B></a></h3>
+<p>This module gathers a set of useful functions to print data on the USART.</p>
+<a href="./DEBUG/print_funcs.h">print_funcs.h</a> is the interface of this module and <a href="./DEBUG/print_funcs.c">print_funcs.c</a> is its implementation.
+
+<p>&nbsp;</p>
+
+<!-- UC3_START -->
+<h3><a href="./LIBS/"><B>LIBS folder</B></a></h3>
+<p>This module gathers a set of pre-compiled archive files for both GCC and IAR: one set for the DRIVERS, the other for the DSPLIB.</p>
+<h4>The /UTILS/LIBS/DRIVERS subfolder holds the libraries for some of the modules of the /DRIVERS folder.</h4>
+<p>It is compiled for all UC3&trade; A, A3, B, C and L Series devices, and for usual optimisations.</p>
+<!-- UC3A_START -->
+<OL>
+        <li><b>For GCC, found under /UTILS/LIBS/DRIVERS/AT32UC3A/GCC</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3a.a (no optimization)</li>
+          <li>libdrivers-at32uc3a-balanced_opt.a</li>
+          <li>libdrivers-at32uc3a-debug.a (for debug purpose)</li>
+          <li>libdrivers-at32uc3a-size_opt.a (size optimized)</li>
+          <li>libdrivers-at32uc3a-speed_opt.a (speed optimized)</li>
+        </UL>
+        <li><b>For IAR, found under /UTILS/LIBS/DRIVERS/AT32UC3A/IAR</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3a.r82 (no optimization)</li>
+          <li>libdrivers-at32uc3a-balanced_opt.r82</li>
+          <li>libdrivers-at32uc3a-size_opt.r82 (size optimized)</li>
+          <li>libdrivers-at32uc3a-speed_opt.r82 (speed optimized)</li>
+        </UL>
+</OL>
+        <li>GCC and IAR libraries share the same API. The header files are found
+        under <b>/UTILS/LIBS/DRIVERS/AT32UC3A3/INCLUDE/</b>. Note that these are
+        copies of the original header files from the DRIVERS/ modules.</li>
+<!-- UC3A_END -->
+<!-- UC3A3_START -->
+<OL>
+        <li><b>For GCC, found under /UTILS/LIBS/DRIVERS/AT32UC3A3/GCC</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3a3.a (no optimization)</li>
+          <li>libdrivers-at32uc3a3-balanced_opt.a</li>
+          <li>libdrivers-at32uc3a3-debug.a (for debug purpose)</li>
+          <li>libdrivers-at32uc3a3-size_opt.a (size optimized)</li>
+          <li>libdrivers-at32uc3a3-speed_opt.a (speed optimized)</li>
+        </UL>
+        <li><b>For IAR, found under /UTILS/LIBS/DRIVERS/AT32UC3A3/IAR</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3a3.r82 (no optimization)</li>
+          <li>libdrivers-at32uc3a3-balanced_opt.r82</li>
+          <li>libdrivers-at32uc3a3-size_opt.r82 (size optimized)</li>
+          <li>libdrivers-at32uc3a3-speed_opt.r82 (speed optimized)</li>
+        </UL>
+</OL>
+        <li>GCC and IAR libraries share the same API. The header files are found
+        under <b>/UTILS/LIBS/DRIVERS/AT32UC3B/INCLUDE/</b>. Note that these are
+        copies of the original header files from the DRIVERS/ modules.</li>
+<!-- UC3A3_END -->
+<!-- UC3B_START -->
+<OL>
+        <li><b>For GCC, found under /UTILS/LIBS/DRIVERS/AT32UC3B/GCC</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3b.a (no optimization)</li>
+          <li>libdrivers-at32uc3b-balanced_opt.a</li>
+          <li>libdrivers-at32uc3b-debug.a (for debug purpose)</li>
+          <li>libdrivers-at32uc3b-size_opt.a (size optimized)</li>
+          <li>libdrivers-at32uc3b-speed_opt.a (speed optimized)</li>
+        </UL>
+        <li><b>For IAR, found under /UTILS/LIBS/DRIVERS/AT32UC3B/IAR</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3b.r82 (no optimization)</li>
+          <li>libdrivers-at32uc3b-balanced_opt.r82</li>
+          <li>libdrivers-at32uc3b-size_opt.r82 (size optimized)</li>
+          <li>libdrivers-at32uc3b-speed_opt.r82 (speed optimized)</li>
+        </UL>
+</OL>
+        <li>GCC and IAR libraries share the same API. The header files are found
+        under <b>/UTILS/LIBS/DRIVERS/AT32UC3C/INCLUDE/</b>. Note that these are
+        copies of the original header files from the DRIVERS/ modules.</li>
+<!-- UC3B_END -->
+<!-- UC3C_START -->
+<OL>
+        <li><b>For GCC, found under /UTILS/LIBS/DRIVERS/AT32UC3C/GCC</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3c.a (no optimization)</li>
+          <li>libdrivers-at32uc3c-balanced_opt.a</li>
+          <li>libdrivers-at32uc3c-debug.a (for debug purpose)</li>
+          <li>libdrivers-at32uc3c-size_opt.a (size optimized)</li>
+          <li>libdrivers-at32uc3c-speed_opt.a (speed optimized)</li>
+        </UL>
+        <li><b>For IAR, found under /UTILS/LIBS/DRIVERS/AT32UC3C/IAR</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3c.r82 (no optimization)</li>
+          <li>libdrivers-at32uc3c-balanced_opt.r82</li>
+          <li>libdrivers-at32uc3c-size_opt.r82 (size optimized)</li>
+          <li>libdrivers-at32uc3c-speed_opt.r82 (speed optimized)</li>
+        </UL>
+</OL>
+        <li>GCC and IAR libraries share the same API. The header files are found
+        under <b>/UTILS/LIBS/DRIVERS/AT32UC3L/INCLUDE/</b>. Note that these are
+        copies of the original header files from the DRIVERS/ modules.</li>
+<!-- UC3C_END -->
+<!-- UC3L_START -->
+<OL>
+        <li><b>For GCC, found under /UTILS/LIBS/DRIVERS/AT32UC3L/GCC</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3l.a (no optimization)</li>
+          <li>libdrivers-at32uc3l-balanced_opt.a</li>
+          <li>libdrivers-at32uc3l-debug.a (for debug purpose)</li>
+          <li>libdrivers-at32uc3l-size_opt.a (size optimized)</li>
+          <li>libdrivers-at32uc3l-speed_opt.a (speed optimized)</li>
+        </UL>
+        <li><b>For IAR, found under /UTILS/LIBS/DRIVERS/AT32UC3A3/IAR</b>:</li>
+        <UL>
+          <li>libdrivers-at32uc3l.r82 (no optimization)</li>
+          <li>libdrivers-at32uc3l-balanced_opt.r82</li>
+          <li>libdrivers-at32uc3l-size_opt.r82 (size optimized)</li>
+          <li>libdrivers-at32uc3l-speed_opt.r82 (speed optimized)</li>
+        </UL>
+</OL>
+<!-- UC3L_END -->
+
+        <li>Libs can be rebuilt with a script: <b>\UTILS\LIBS\DRIVERS\build.sh (no
+        argument)</b>. The sources used for the build of the libraries are under /DRIVERS/.</li>
+
+        <li>Note that USBB and MACB drivers are not part of the libs, since they
+        require a specific configuration file(respectively named conf_usb.h and
+        conf_eth.h) which are application-dependent.</li>
+
+<p>&nbsp;</p>
+
+<h4>The /UTILS/LIBS/DSPLIB subfolder holds the libraries for some of the modules of the /SERVICES/DSPLIB folder.</h4>
+<p>It is compiled for all UC3 devices, and for usual optimisations.</p>
+<OL>
+<!-- UC3B_START -->
+      <li><b>The following libraries are optimized for AVR32 UC architecture revision 1 (e.g. AT32UC3B0256)</b>:</li>
+        <UL>
+          <li><b>For GCC, found under /UTILS/LIBS/DSPLIB/AT32UCR1/GCC</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr1-dspaccandsize_opt.a (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr1-dspaccuracy_opt.a (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr1-dspsize_opt.a (size optimized)</li>
+              <li>libdsp-at32ucr1-dspspeed_opt.a (speed optimized)</li>
+            </UL>
+          <li><b>For IAR, found under /UTILS/LIBS/DSPLIB/AT32UCR1/IAR</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr1-dspaccandsize_opt.r82 (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr1-dspaccuracy_opt.r82 (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr1-dspsize_opt.r82 (size optimized)</li>
+              <li>libdsp-at32ucr1-dspspeed_opt.r82 (speed optimized)</li>
+            </UL>
+        </UL>
+<!-- UC3B_END -->
+<!-- UC3A_START -->
+      <li><b>The following libraries are optimized for AVR32 UC architecture revision 2 (e.g. AT32UC3A0512)</b>:</li>
+        <UL>
+          <li><b>For GCC, found under /UTILS/LIBS/DSPLIB/AT32UCR2/GCC</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr2-dspaccandsize_opt.a (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr2-dspaccuracy_opt.a (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr2-dspsize_opt.a (size optimized)</li>
+              <li>libdsp-at32ucr2-dspspeed_opt.a (speed optimized)</li>
+            </UL>
+          <li><b>For IAR, found under /UTILS/LIBS/DSPLIB/AT32UCR2/IAR</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr2-dspaccandsize_opt.r82 (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr2-dspaccuracy_opt.r82 (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr2-dspsize_opt.r82 (size optimized)</li>
+              <li>libdsp-at32ucr2-dspspeed_opt.r82 (speed optimized)</li>
+            </UL>
+        </UL>
+<!-- UC3A_END -->
+<!-- UC3A3_START -->
+      <li><b>The following libraries are optimized for AVR32 UC architecture revision 2 (e.g. AT32UC3A3256)</b>:</li>
+        <UL>
+          <li><b>For GCC, found under /UTILS/LIBS/DSPLIB/AT32UCR2/GCC</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr2-dspaccandsize_opt.a (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr2-dspaccuracy_opt.a (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr2-dspsize_opt.a (size optimized)</li>
+              <li>libdsp-at32ucr2-dspspeed_opt.a (speed optimized)</li>
+            </UL>
+          <li><b>For IAR, found under /UTILS/LIBS/DSPLIB/AT32UCR2/IAR</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr2-dspaccandsize_opt.r82 (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr2-dspaccuracy_opt.r82 (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr2-dspsize_opt.r82 (size optimized)</li>
+              <li>libdsp-at32ucr2-dspspeed_opt.r82 (speed optimized)</li>
+            </UL>
+        </UL>
+<!-- UC3A3_END -->
+<!-- UC3L_START -->
+      <li><b>The following libraries are optimized for AVR32 UC architecture revision 3 (e.g. AT32UC3L064, AT32UC3C0512C)</b>:</li>
+        <UL>
+          <li><b>For GCC, found under /UTILS/LIBS/DSPLIB/AT32UCR3/GCC</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr3-dspaccandsize_opt.a (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr3-dspaccuracy_opt.a (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr3-dspsize_opt.a (size optimized)</li>
+              <li>libdsp-at32ucr3-dspspeed_opt.a (speed optimized)</li>
+            </UL>
+          <li><b>For IAR, found under /UTILS/LIBS/DSPLIB/AT32UCR3/IAR</b>:</li>
+            <UL>
+              <li>libdsp-at32ucr3-dspaccandsize_opt.r82 (algorithms accuracy and size optimized)</li>
+              <li>libdsp-at32ucr3-dspaccuracy_opt.r82 (algorithms accuracy optimized)</li>
+              <li>libdsp-at32ucr3-dspsize_opt.r82 (size optimized)</li>
+              <li>libdsp-at32ucr3-dspspeed_opt.r82 (speed optimized)</li>
+            </UL>
+        </UL>
+<!-- UC3L_END -->
+</OL>
+        <li>GCC and IAR libraries share the same API, described in the dsp.h header
+        file, found under <b>/UTILS/LIBS/DSPLIB/INCLUDE/</b>. Note that this header file
+        is a copy of the original header file from the SERVICES/DSPLIB/INCLUDE folder.</li>
+
+        <li>Libs can be rebuilt with a script: \UTILS\LIBS\DSPLIB\build.sh (no argument).
+        The sources used for the build the libraries are under /SERVICES/DSPLIB/.</li>
+
+<p>&nbsp;</p>
+
+<h3><a href="./LINKER_SCRIPTS/"><B>LINKER_SCRIPTS folder</B></a></h3>
+<p>This module gathers a set of pre-written linker scripts per microcontroller and compiler.</p>
+<!-- UC3A_START -->
+<p>For example, the following linker scripts for the AT32UC3A0512 microcontroller are under the <B><I>./LINKER_SCRIPTS/AT32UC3A/0512/</B></I> folder:</p>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3A/0512/GCC/link_uc3a0512.lds">GCC/link_uc3a0512.lds</a> : this script allows to link code with GCC.</li>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3A/0512/IAR/lnkuc3a0512.xcl">IAR/lnkuc3a0512.xcl</a> : this script allows to link code with IAR.</li>
+<!-- UC3A_END -->
+<!-- UC3A3_START -->
+<p>For example, the following linker scripts for the AT32UC3A3256 microcontroller are under the <B><I>./LINKER_SCRIPTS/AT32UC3A3/256/</B></I> folder:</p>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3A3/256/GCC/link_uc3a3256.lds">GCC/link_uc3a3256.lds</a> : this script allows to link code with GCC.</li>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3A3/256/IAR/lnkuc3a3256.xcl">IAR/lnkuc3a3256.xcl</a> : this script allows to link code with IAR.</li>
+<!-- UC3A3_END -->
+<!-- UC3B_START -->
+<p>For example, the following linker scripts for the AT32UC3B0256 microcontroller are under the <B><I>./LINKER_SCRIPTS/AT32UC3B/0256/</B></I> folder:</p>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3B/0256/GCC/link_uc3b0256.lds">GCC/link_uc3b0256.lds</a> : this script allows to link code with GCC.</li>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3B/0256/IAR/lnkuc3b0256.xcl">IAR/lnkuc3b0256.xcl</a> : this script allows to link code with IAR.</li>
+<!-- UC3B_END -->
+<!-- UC3C_START -->
+<p>For example, the following linker scripts for the AT32UC3C0512C microcontroller are under the <B><I>./LINKER_SCRIPTS/AT32UC3C/0512C/</B></I> folder:</p>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3C/0512C/GCC/link_uc3c0512c.lds">GCC/link_uc3c0512c.lds</a> : this script allows to link code with GCC.</li>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3C/0512C/IAR/lnkuc3c0512c.xcl">IAR/lnkuc3c0512c.xcl</a> : this script allows to link code with IAR.</li>
+<!-- UC3C_END -->
+<!-- UC3L_START -->
+<p>For example, the following linker scripts for the AT32UC3L064 microcontroller are under the <B><I>./LINKER_SCRIPTS/AT32UC3L/064/</B></I> folder:</p>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3L/064/GCC/link_uc3l064.lds">GCC/link_uc3l064.lds</a> : this script allows to link code with GCC.</li>
+   <li><a href="./LINKER_SCRIPTS/AT32UC3L/064/IAR/lnkuc3l064.xcl">IAR/lnkuc3l064.xcl</a> : this script allows to link code with IAR.</li>
+<!-- UC3L_END -->
+
+<p>&nbsp;</p>
+<!-- UC3_END -->
+
+<h3><a href="./PREPROCESSOR/"><B>PREPROCESSOR folder</B></a></h3>
+<p>This module gathers a set of useful C preprocessor macros. It is composed of the files
+<li><a href="./PREPROCESSOR/mrepeat.h">mrepeat.h</a>: C preprocessor repeating set of macros,</li>
+<li><a href="./PREPROCESSOR/preprocessor.h">preprocessor.h</a>: include of all header files of this module (so that applications only use to include this file),</li>
+<li><a href="./PREPROCESSOR/stringz.h">stringz.h</a>: C preprocessor stringenizer set of macros,</li>
+<li><a href="./PREPROCESSOR/tpaste.h">tpaste.h</a>: C preprocessor token manipulation set of macros.</li>
+
+<!-- UC3_START -->
+<p>&nbsp;</p>
+
+<h3><a href="./STARTUP_FILES/"><B>STARTUP_FILES folder</B></a></h3>
+<p>This module gathers a set of pre-written startup files per compiler.</p>
+<p>A startup file gets executed just after the reset vector and before the main() C function (when it's done doing its work, the startup actually jumps to the main() function).</p>
+<p>The main mission of a startup file is to initialize critical registers (example: the stack pointer) and memory.</p>
+<p>For example, the following GCC startup file is under the <B><I>./STARTUP_FILES/GCC/</B></I> folder:</p>
+<li><a href="./STARTUP_FILES/GCC/crt0.S"><font color="red"></font>crt0.S</a>: example of a basic startup file, completely written in assembly language.</li>
+<!-- UC3_END -->
+<p>&nbsp;</p>
+
+<h3><a href="./NEWLIB_ADDONS/"><B>NEWLIB_ADDONS folder</B></a></h3>
+The AVR32 GNU Toolchain v2.1 has removed some newlib addons files that were present in the previous versions: exceptions, interrupts and usart support.
+To minimize the effect on the Software Framework and on customers, these files have been added in the Software Framework as a module named NEWLIB_ADDONS.
+</p>
+The <B><I>NEWLIB_ADDONS</B></I> module is organized as follows:
+<li> under UTILS/NEWLIB_ADDONS/ the src code, </li>
+<li> under UTILS/NEWLIB_ADDONS/Build the scripts to build the libraries,</li>
+<li> under UTILS/LIBS/NEWLIB_ADDONS/INCLUDE the nlao interface header files.</li>
+<li> under UTILS/LIBS/NEWLIB_ADDONS/ the archive libs for AT32AP7, AT32UCR1, AT32UCR2, AT32UCR3:</li>
+  <UL>
+    <li>libnewlib_addons-at32xxxx-debug archive lib generated with -O0 -g (for debug)</li>
+    <li>libnewlib_addons-at32xxxx archive lib generated with -O0 (no optimization)</li>
+    <li>libnewlib_addons-at32xxxx-balanced_opt archive lib generated with -O2 (medium level optimization)</li>
+    <li>libnewlib_addons-at32xxxx-speed_opt archive lib generated with -O3 (speed optimization)</li>
+    <li>libnewlib_addons-at32xxxx-size_opt archive lib generated with -Os (size optimization)</li>
+  </UL>
+</OL>
+
+<p>&nbsp;</p>
+
+<hr align="center" width="50%" class="whs4">
+
+    <p class=legalfooter>AVR is a registered trademark of
+    Atmel Corporation. </p>
+   </div>>
+   </body>
+</html>

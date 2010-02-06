@@ -1,0 +1,2 @@
+target extended-remote :4711
+sym uc3c0512revc-fat_example.elf

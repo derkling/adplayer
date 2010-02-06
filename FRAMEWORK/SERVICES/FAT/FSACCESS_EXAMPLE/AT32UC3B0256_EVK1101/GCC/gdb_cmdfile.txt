@@ -1,0 +1,2 @@
+target extended-remote :4711
+sym uc3b0256-fsaccess_example.elf
