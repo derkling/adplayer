@@ -16,10 +16,14 @@
 #include "power_clocks_lib.h"
 #include "print_funcs.h"
 #include "pwm_dac.h"
+#include "adc.h"
 
+// Connection of the light sensor
+#define ADC_LIGHT_CHANNEL           6
+#define ADC_LIGHT_PIN               AVR32_ADC_AD_6_PIN
+#define ADC_LIGHT_FUNCTION          AVR32_ADC_AD_6_FUNCTION
 
 char dbg_buff[64];
-
 
 // From helix_player.c
 extern void abort_playback();
@@ -29,6 +33,21 @@ extern long play_selected_file();
 extern void sd_reader_init();
 
 volatile static Bool skip_direction;
+
+unsigned short presence = 0;
+
+
+/* ADC */
+/* GPIO pin/adc-function map. */
+static const gpio_map_t ADC_GPIO_MAP =
+{
+	{ADC_LIGHT_PIN, ADC_LIGHT_FUNCTION},
+};
+/* ADC IP registers address */
+volatile avr32_adc_t *adc = &AVR32_ADC;
+
+
+
 
 /*! \brief Initializes the MCU system clocks.
  */
@@ -61,6 +80,48 @@ static void init_sys_clocks(void)
 	 * but it seems to work fine at 48MHz, so we use that since it's faster. */
 	flashc_set_wait_state(0);
 	pm_switch_to_clock(&AVR32_PM, AVR32_PM_MCCTRL_MCSEL_PLL0);
+}
+
+static unsigned short check_presence(void)
+{
+	unsigned short readings = 32;
+	unsigned short light_level;
+	unsigned short max_level = 0x0000;
+	unsigned short min_level = 0xFFFF;
+
+	// Enable the ADC channels
+	adc_enable(adc, ADC_LIGHT_CHANNEL);
+
+	while (readings--) {
+		// launch conversion on all enabled channels
+		adc_start(adc);
+		// get value for the light adc channel
+		light_level = adc_get_value(adc, ADC_LIGHT_CHANNEL);
+		max_level = max_level > light_level ? max_level : light_level;
+		min_level = min_level < light_level ? min_level : light_level;
+		cpu_delay_ms(100, FOSC0);
+	}
+
+	print_dbg(CL_WHITE"Max Light: 0x");
+	print_dbg_short_hex(max_level);
+
+	// Computing delta light
+	light_level = max_level-min_level;
+
+	print_dbg(CL_WHITE", Delta Light: 0x");
+	print_dbg_short_hex(light_level);
+	print_dbg("\n");
+
+	// Setting threshold being half the max light
+	max_level >>= 3 ;
+	if (light_level < max_level)
+		light_level = 0;
+
+	// Disable the ADC channels.
+	adc_disable(adc, ADC_LIGHT_CHANNEL);
+
+	return light_level;
+
 }
 
 __attribute__((__interrupt__))
@@ -98,12 +159,21 @@ static void joystick_int_handler(void)
 		// Door closed
 		print_dbg(CL_BLUE"Door closed\n");
 		LED_Toggle(LED2);
+
+		presence = check_presence();
+		if (presence) {
+			print_dbg("People inside\n");
+		}
+
 		gpio_clear_pin_interrupt_flag(GPIO_PUSH_BUTTON_0);
 	}
 	if(gpio_get_pin_interrupt_flag(AVR32_PIN_PB03)) {
 		// Door moved
 		print_dbg(CL_BLUE"Door moving\n");
 		LED_Toggle(LED2);
+
+		presence = 1;
+
 		gpio_clear_pin_interrupt_flag(AVR32_PIN_PB03);
 		gpio_disable_pin_interrupt(AVR32_PIN_PB03);
 	}
@@ -168,6 +238,16 @@ int main(void) {
 	gpio_enable_pin_interrupt(AVR32_PIN_PB03, GPIO_FALLING_EDGE);
 
 
+	// Configure ADC
+	// Assign and enable GPIO pins to the ADC function.
+	gpio_enable_module(ADC_GPIO_MAP, sizeof(ADC_GPIO_MAP) / sizeof(ADC_GPIO_MAP[0]));
+	// Lower the ADC clock to match the ADC characteristics (because we configured
+	// the CPU clock to 12MHz, and the ADC clock characteristics are usually lower;
+	// cf. the ADC Characteristic section in the datasheet).
+	AVR32_ADC.mr |= 0x1 << AVR32_ADC_MR_PRESCAL_OFFSET;
+	adc_configure(adc);
+
+
 	LED_Off(LED0);
 
 	// Initialize SD-reader.
@@ -215,10 +295,13 @@ int main(void) {
 				print_dbg(CL_BLUE"Next track: "); print_dbg(dbg_buff); print_dbg("\n");
 			}
 
-			print_dbg(CL_RED"Entering standby... ");
-			gpio_enable_pin_interrupt(AVR32_PIN_PB03, GPIO_FALLING_EDGE);
-			SLEEP(AVR32_PM_SMODE_IDLE);
-			print_dbg("wakeup!\n");
+			do {
+				print_dbg(CL_RED"Entering standby... ");
+				gpio_enable_pin_interrupt(AVR32_PIN_PB03, GPIO_FALLING_EDGE);
+				SLEEP(AVR32_PM_SMODE_IDLE);
+				print_dbg("wakeup!\n");
+			} while(!presence);
+			presence = 0;
 
 			// Play the file. We don't check the file extension/format here, we assume the
 			// file is an MP3-file. Otherwise play_selected_file() should return (0) quickly,

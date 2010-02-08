@@ -82,6 +82,7 @@ INC_PATH = \
   $(DRVR_PATH)/FLASHC/ \
   $(DRVR_PATH)/INTC/ \
   $(DRVR_PATH)/USART/ \
+  $(DRVR_PATH)/ADC/ \
   $(SERV_PATH)/MEMORY/CTRL_ACCESS/ \
   $(SERV_PATH)/FAT/ \
   $(UTIL_PATH)/DEBUG/ \
@@ -110,6 +111,7 @@ CSRCS = \
   $(DRVR_PATH)/FLASHC/flashc.c \
   $(DRVR_PATH)/PDCA/pdca.c \
   $(DRVR_PATH)/GPIO/gpio.c \
+  $(DRVR_PATH)/ADC/adc.c \
   $(SERV_PATH)/MEMORY/CTRL_ACCESS/ctrl_access.c \
   $(SERV_PATH)/FAT/fat_unusual.c \
   $(SERV_PATH)/FAT/navigation.c \
